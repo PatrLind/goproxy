@@ -1,0 +1,9 @@
+version: "2"
+services:
+  goproxy:
+    build: .
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    volumes:
+      - /var/goproxy:/cache
