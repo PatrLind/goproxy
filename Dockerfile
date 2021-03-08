@@ -14,4 +14,4 @@ RUN mkdir /cache
 WORKDIR /goproxy
 COPY --from=builder /build/goproxy ./
 
-CMD ["./goproxy", "--cache-dir", "/cache"]
+CMD ["./goproxy"]

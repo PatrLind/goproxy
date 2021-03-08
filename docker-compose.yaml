@@ -1,9 +1,24 @@
 version: "2"
+
+volumes:
+  cache:
+
 services:
   goproxy:
     build: .
     ports:
       - "8080:8080"
     restart: unless-stopped
+    environment:
+      - LISTEN=:8080
+      - CACHE_DIR=/cache
+      - CACHE_MAX_MEGABYTES=0
+      # See https://golang.org/ref/mod#environment-variables
+      # for more information
+      - GOPRIVATE=
+      - GOPROXY=https://proxy.golang.org,direct
+      - GONOPROXY=
+      - GOSUMDB=sum.golang.org
+      - GONOSUMDB=
     volumes:
-      - /var/goproxy:/cache
+      - cache:/cache
